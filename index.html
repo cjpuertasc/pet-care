@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f6fff">
+<title>Pet Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<base target="_blank">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- Iconos SVG ocultos (decorativos) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-paw" viewBox="0 0 64 64"><g fill="currentColor"><ellipse cx="13" cy="29" rx="7" ry="9"/><ellipse cx="26" cy="14" rx="7" ry="9"/><ellipse cx="42" cy="14" rx="7" ry="9"/><ellipse cx="55" cy="29" rx="7" ry="9"/><path d="M32 29c-9 0-18 10-18 19 0 6 5 9 11 8 3-.5 5-1.5 7-1.5s4 1 7 1.5c6 1 11-2 11-8 0-9-9-19-18-19z"/></g></symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></g></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></g></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></g></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></g></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></g></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><circle cx="8.5" cy="14.5" r=".6"/><circle cx="12" cy="14.5" r=".6"/><circle cx="15.5" cy="14.5" r=".6"/><circle cx="8.5" cy="17.5" r=".6"/><circle cx="12" cy="17.5" r=".6"/></g></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><polyline points="5 13 10 18 19 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></g></symbol>
+    <symbol id="i-bone" viewBox="0 0 24 24"><g fill="currentColor" transform="rotate(-45 12 12)"><circle cx="4.5" cy="9.3" r="2.6"/><circle cx="4.5" cy="14.7" r="2.6"/><circle cx="19.5" cy="9.3" r="2.6"/><circle cx="19.5" cy="14.7" r="2.6"/><rect x="5" y="9.5" width="14" height="5" rx="1.2"/></g></symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.1" y2="15.9"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="8.1" y1="8.1" x2="12" y2="12"/></g></symbol>
+    <symbol id="i-heartplus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 1-.2 2-.6 3"/><line x1="18" y1="15" x2="18" y2="21"/><line x1="15" y1="18" x2="21" y2="18"/></g></symbol>
+    <symbol id="i-househeart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M12 17.5s-3-1.8-3-3.7a1.7 1.7 0 0 1 3-1 1.7 1.7 0 0 1 3 1c0 1.9-3 3.7-3 3.7z"/></g></symbol>
+    <symbol id="i-dog" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6c1-2 3-3 6-3s5 1 6 3v8a6 6 0 0 1-12 0z"/><path d="M5.5 8C3.5 8 2.5 11 3 14s2 3.5 3 3M18.5 8c2 0 3 3 2.5 6s-2 3.5-3 3"/><path d="M11 15h2l-1 1.3z" fill="currentColor"/></g><circle cx="9.5" cy="11" r=".9" fill="currentColor"/><circle cx="14.5" cy="11" r=".9" fill="currentColor"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></g></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></g></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="7.8" r=".4"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <div class="lava-bg" id="lava-bg-global"></div>
+
+  <header class="topbar" id="topbar" hidden>
+    <button class="icon-btn burger" data-action="menu" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="topbar-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+    <button class="icon-btn" data-action="bell" aria-label="Notifications">
+      <svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg>
+      <span class="badge" id="bell-badge" hidden>0</span>
+    </button>
+    <span class="topbar-wave w2" aria-hidden="true"></span>
+    <span class="topbar-wave" aria-hidden="true"></span>
+  </header>
+
+  <main class="screens" id="screens">
+
+    <section class="screen s-welcome" id="s-welcome">
+      <div class="welcome-top">
+        <svg class="logo-paw" aria-hidden="true"><use href="#i-paw"/></svg>
+        <h1>Pet Care</h1>
+        <p class="tagline">Your pet, our priority</p>
+      </div>
+
+      <div class="hero">
+        <span class="hero-blob left" aria-hidden="true"></span>
+        <span class="hero-blob right" aria-hidden="true"></span>
+        <div class="hero-pets" id="hero-pets">
+          <img class="hero-img" src="img/mascotas.png" alt="A dog and a cat sitting together"
+               onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.r){this.dataset.r=1;this.src='mascotas.png'}else{this.remove()}">
+          <span class="hero-pet dog" role="img" aria-label="Dog">🐶</span>
+          <span class="hero-pet cat" role="img" aria-label="Cat">🐱</span>
+        </div>
+        <span class="hero-img-blob left"   aria-hidden="true"></span>
+        <span class="hero-img-blob left-2" aria-hidden="true"></span>
+        <span class="hero-img-blob right"  aria-hidden="true"></span>
+        <span class="hero-img-blob right-2" aria-hidden="true"></span>
+      </div>
+
+      <div class="welcome-bottom">
+        <div class="waves" aria-hidden="true">
+          <svg class="wv wv-back" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 30 C100 0 300 60 400 30 C500 0 700 60 800 30 V60 H0Z"/></svg>
+          <svg class="wv wv-front" viewBox="0 0 800 60" preserveAspectRatio="none"><path d="M0 30 C100 0 300 60 400 30 C500 0 700 60 800 30 V60 H0Z"/></svg>
+        </div>
+        <div class="wb-content">
+          <h2>Book quality services for your pet's well-being</h2>
+          <p>Grooming, veterinary care, and daycare all in one place easy and secure.</p>
+          <button class="btn btn-primary" data-go="register">GET STARTED <svg class="ic arrow-nudge" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="link-btn" data-action="guest">Continue as guest</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen s-auth" id="s-register">
+      <button class="icon-btn back-abs" data-back aria-label="Back"><svg class="ic" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+      <div class="auth-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+      <h2 class="hello">Hello!</h2>
+      <p class="hello-sub">Tell us a little about yourself<br>to get started</p>
+      <form id="form-register" novalidate>
+        <label class="pill-field"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><input name="name" type="text" placeholder="Full name" autocomplete="name" aria-label="Full name"></label>
+        <label class="pill-field"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><input name="email" type="email" inputmode="email" placeholder="E-mail" autocomplete="email" aria-label="E-mail"></label>
+        <label class="pill-field"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><input name="phone" type="tel" inputmode="tel" placeholder="Phone" autocomplete="tel" aria-label="Phone"></label>
+        <p class="form-error" id="err-register" role="alert"></p>
+        <button class="btn btn-primary" type="submit">SIGN UP</button>
+      </form>
+      <p class="alt">Already have an account? <button type="button" class="link-btn strong" data-go="login">Log In</button></p>
+      <div class="divider"><span>or</span></div>
+      <button class="btn btn-outline" data-action="guest">Continue without registering</button>
+    </section>
+
+    <section class="screen s-auth" id="s-login">
+      <button class="icon-btn back-abs" data-back aria-label="Back"><svg class="ic" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+      <div class="auth-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+      <h2 class="hello">Welcome back!</h2>
+      <p class="hello-sub">Log in with the e-mail and phone<br>you used to sign up</p>
+      <form id="form-login" novalidate>
+        <label class="pill-field"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><input name="email" type="email" inputmode="email" placeholder="E-mail" autocomplete="email" aria-label="E-mail"></label>
+        <label class="pill-field"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><input name="phone" type="tel" inputmode="tel" placeholder="Phone" autocomplete="tel" aria-label="Phone"></label>
+        <p class="form-error" id="err-login" role="alert"></p>
+        <button class="btn btn-primary" type="submit">LOG IN</button>
+      </form>
+      <p class="alt">New here? <button type="button" class="link-btn strong" data-go="register">Sign Up</button></p>
+      <div class="divider"><span>or</span></div>
+      <button class="btn btn-outline" data-action="guest">Continue without registering</button>
+    </section>
+
+    <section class="screen s-main" id="s-home">
+      <div class="page">
+        <h2 class="page-title left" id="home-greet">Hello!</h2>
+        <p class="page-sub left">What does your pet need today?</p>
+        <div id="home-next"></div>
+        <h3 class="section-title">Our services</h3>
+        <div class="svc-list" id="home-services"></div>
+      </div>
+    </section>
+
+    <section class="screen s-main" id="s-services">
+      <div class="page">
+        <h2 class="page-title">Our services</h2>
+        <p class="page-sub">Select the service you want</p>
+        <div class="svc-list" id="services-list"></div>
+      </div>
+    </section>
+
+    <section class="screen s-step themed" id="s-service">
+      <svg class="wave" viewBox="0 0 430 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C70 0 140 60 220 30 S360 5 430 25 V90 H0Z" fill="currentColor"/></svg>
+      <div class="sub-head">
+        <button class="icon-btn" data-back aria-label="Back"><svg class="ic" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+        <div class="sub-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+        <span class="sub-spacer"></span>
+      </div>
+      <div class="step-body" id="service-body"></div>
+    </section>
+
+    <section class="screen s-step" id="s-pet">
+      <svg class="wave" viewBox="0 0 430 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C70 0 140 60 220 30 S360 5 430 25 V90 H0Z" fill="currentColor"/></svg>
+      <div class="sub-head">
+        <button class="icon-btn" data-back aria-label="Back"><svg class="ic" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+        <div class="sub-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+        <span class="sub-spacer"></span>
+      </div>
+      <div class="step-body">
+        <div class="step-head">
+          <span class="step-badge"><svg class="ic" aria-hidden="true"><use href="#i-dog"/></svg></span>
+          <div><h3>Pet information</h3><p>Tell us about your pet so we can provide a better service.</p></div>
+        </div>
+        <div class="saved-pets" id="saved-pets" hidden></div>
+        <form id="form-pet" novalidate>
+          <label class="field"><span>Pet's name</span><input name="name" type="text" placeholder="e.g. Luna" maxlength="30" autocomplete="off"></label>
+          <label class="field"><span>Species</span>
+            <select name="species"><option>Dog</option><option>Cat</option><option>Other</option></select>
+          </label>
+          <label class="field"><span>Breed</span><input name="breed" type="text" placeholder="e.g. Golden Retriever" maxlength="40" autocomplete="off"></label>
+          <label class="field"><span>Age</span>
+            <select name="age">
+              <option value="">Select</option>
+              <option>Under 1 year</option><option>1 - 3 years</option><option>4 - 7 years</option><option>8+ years</option>
+            </select>
+          </label>
+          <label class="field"><span>Notes (optional)</span><textarea name="notes" rows="4" maxlength="300" placeholder="E.g. Has allergies... Is aggressive..."></textarea></label>
+          <p class="form-error" id="err-pet" role="alert"></p>
+          <button class="btn btn-primary" type="submit">Continue</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="screen s-step" id="s-datetime">
+      <svg class="wave" viewBox="0 0 430 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C70 0 140 60 220 30 S360 5 430 25 V90 H0Z" fill="currentColor"/></svg>
+      <div class="sub-head">
+        <button class="icon-btn" data-back aria-label="Back"><svg class="ic" aria-hidden="true"><use href="#i-chev-l"/></svg></button>
+        <div class="sub-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+        <span class="sub-spacer"></span>
+      </div>
+      <div class="step-body">
+        <div class="step-head">
+          <span class="step-badge"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+          <div><h3>Select date and time</h3><p>Choose the day and time that works best for you.</p></div>
+        </div>
+        <div class="cal" id="cal"></div>
+        <h4 class="slots-title">Available times</h4>
+        <div class="slots" id="slots"></div>
+        <button class="btn btn-primary" id="dt-continue" disabled>Continue</button>
+      </div>
+    </section>
+
+    <section class="screen s-step" id="s-confirm">
+      <svg class="wave" viewBox="0 0 430 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C70 0 140 60 220 30 S360 5 430 25 V90 H0Z" fill="currentColor"/></svg>
+      <div class="sub-head center">
+        <div class="sub-brand"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><span>Pet Care</span></div>
+      </div>
+      <div class="step-body" id="confirm-body"></div>
+    </section>
+
+    <section class="screen s-main" id="s-inbox">
+      <div class="page">
+        <h2 class="page-title" id="inbox-title">Notifications</h2>
+        <div class="seg" role="tablist" data-on="alerts">
+          <button role="tab" data-seg="alerts" id="seg-alerts">Notifications <span class="seg-count" id="seg-count" hidden>0</span></button>
+          <button role="tab" data-seg="appts" id="seg-appts">My appointments</button>
+        </div>
+        <div id="inbox-body"></div>
+      </div>
+    </section>
+
+    <section class="screen s-main" id="s-profile">
+      <div class="page" id="profile-body"></div>
+    </section>
+
+  </main>
+
+  <nav class="tabbar" id="tabbar" hidden aria-label="Main">
+    <button data-tab="home"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></button>
+    <button data-tab="services"><svg class="ic" aria-hidden="true"><use href="#i-bone"/></svg><span>Services</span></button>
+    <button data-tab="appts"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Dates</span></button>
+    <button data-tab="profile"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Profile</span></button>
+  </nav>
+
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-backdrop" data-action="close-drawer"></div>
+    <aside class="drawer-panel">
+      <div class="drawer-head"><svg class="ic" aria-hidden="true"><use href="#i-paw"/></svg><b>Pet Care</b></div>
+      <p class="drawer-user" id="drawer-user"></p>
+      <button data-tab="home"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg>Home</button>
+      <button data-tab="services"><svg class="ic" aria-hidden="true"><use href="#i-bone"/></svg>Services</button>
+      <button data-tab="appts"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>My appointments</button>
+      <button data-tab="alerts"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg>Notifications</button>
+      <button data-tab="profile"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>Profile</button>
+      <div class="drawer-foot" id="drawer-foot"></div>
+    </aside>
+  </div>
+
+  <div class="sheet-wrap" id="sheet" hidden>
+    <div class="sheet-backdrop" data-action="close-sheet"></div>
+    <div class="sheet" id="sheet-body" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

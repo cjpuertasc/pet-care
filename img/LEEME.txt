@@ -1,0 +1,5 @@
+Pon aquí la imagen de la pantalla de bienvenida:
+
+  mascotas.png   ->  el perro y el gato juntos (PNG con fondo transparente)
+
+Si el archivo no existe, la app muestra unos emojis de respaldo.
